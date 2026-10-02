@@ -1,0 +1,154 @@
+<Window x:Class="BelousAuthApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="860" Width="820"
+        WindowStartupLocation="CenterScreen"
+        Background="#252526"
+        Loaded="Window_Loaded">
+    
+    <Window.Resources>
+        <!-- Styling for TextBoxes -->
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Background" Value="#333337"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#555555"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,3"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <!-- Styling for PasswordBoxes -->
+        <Style TargetType="PasswordBox">
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Background" Value="#333337"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#555555"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,3"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <!-- Styling for ComboBox -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Background" Value="#333337"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#555555"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+    </Window.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="30,20,30,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT COLUMN: Registration Form -->
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Персональная информация" 
+                           FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,15"/>
+
+                <!-- Фамилия -->
+                <TextBlock Text="Фамилия" Foreground="#DCDCDC" Margin="0,0,0,4"/>
+                <TextBox x:Name="lName" Text="Иванов" GotFocus="LName_GotFocus" Margin="0,0,0,10"/>
+
+                <!-- Имя -->
+                <TextBlock Text="Имя" Foreground="#DCDCDC" Margin="0,0,0,4"/>
+                <TextBox x:Name="name" Text="Иван" GotFocus="Name_GotFocus" Margin="0,0,0,10"/>
+
+                <!-- E-mail (логин) -->
+                <TextBlock Text="E-mail (логин)" Foreground="#DCDCDC" Margin="0,0,0,4"/>
+                <TextBox x:Name="eMail" Text="ivanov@gmail.com" GotFocus="Email_GotFocus" Margin="0,0,0,10"/>
+
+                <!-- Пароль -->
+                <TextBlock Text="Пароль" Foreground="#DCDCDC" Margin="0,0,0,4"/>
+                <PasswordBox x:Name="passw" PasswordChanged="Passw_PasswordChanged" Margin="0,0,0,10"/>
+
+                <!-- Повторить пароль -->
+                <TextBlock Text="Повторить пароль" Foreground="#DCDCDC" Margin="0,0,0,4"/>
+                <PasswordBox x:Name="passwRepeat" PasswordChanged="PasswRepeat_PasswordChanged" Margin="0,0,0,16"/>
+
+                <!-- Кодовое слово -->
+                <TextBlock Text="Кодовое слово" FontWeight="Bold" Foreground="White" Margin="0,4,0,2"/>
+                <TextBlock Text="Кодовое слово (одно слово)" Foreground="#AAAAAA" FontSize="11" Margin="0,0,0,4"/>
+                <TextBox x:Name="word" Text="фунтик" Margin="0,0,0,16"/>
+
+                <!-- Секретный вопрос для восстановления пароля -->
+                <TextBlock Text="Секретный вопрос для восстановления пароля" FontWeight="Bold" Foreground="White" Margin="0,4,0,2"/>
+                <TextBlock Text="Секретный вопрос" Foreground="#AAAAAA" FontSize="11" Margin="0,0,0,4"/>
+                <ComboBox x:Name="qwest" Margin="0,0,0,12"/>
+
+                <!-- Ответ на вопрос -->
+                <TextBlock Text="Ответ на вопрос" Foreground="#AAAAAA" FontSize="11" Margin="0,0,0,4"/>
+                <TextBox x:Name="otvet" Text="Париж" Margin="0,0,0,16"/>
+
+                <!-- Согласен с условиями -->
+                <CheckBox x:Name="chkAgree" Content="Согласен с условиями" Foreground="White" 
+                          FontSize="12" Margin="0,0,0,20"/>
+
+                <!-- Кнопка ДАЛЕЕ с характерным градиентом -->
+                <Button x:Name="SignIn" Content="ДАЛЕЕ" Click="SignIn_Click"
+                        Height="38" FontWeight="Bold" FontSize="14" Foreground="White"
+                        Cursor="Hand" BorderThickness="1" BorderBrush="#222222">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FFFCD338" Offset="0.0"/>
+                            <GradientStop Color="#FFA08000" Offset="0.4"/>
+                            <GradientStop Color="#FF2B2405" Offset="0.7"/>
+                            <GradientStop Color="#FF111111" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <!-- Вспомогательная кнопка перехода к списку пользователей -->
+                <Button Content="Просмотр существующих пользователей в БД" Click="BtnViewUsers_Click"
+                        Height="28" Margin="0,10,0,0" Background="#333337" Foreground="#BBBBBB"
+                        BorderBrush="#444444" FontSize="11" Cursor="Hand"/>
+            </StackPanel>
+
+            <!-- RIGHT COLUMN: Password Validation & Rules Panel -->
+            <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="0,175,0,0">
+                <!-- Рамка с минимальной длиной (как в методичке Рис. 3) -->
+                <Border BorderBrush="#007ACC" BorderThickness="1" Background="#1E1E1E" 
+                        Padding="10,6" Margin="0,0,0,12">
+                    <TextBlock x:Name="tbRuleMinLength" Text="Минимальная длина пароля 6 символов" 
+                               Foreground="#007ACC" FontSize="12" FontWeight="SemiBold"/>
+                </Border>
+
+                <!-- Условия пароля 1-4 -->
+                <StackPanel Margin="6,0,0,0">
+                    <TextBlock x:Name="tbRule1" Text="Условия пароля 1: наличие цифр" 
+                               Foreground="#AAAAAA" FontSize="12" Margin="0,0,0,6"/>
+                    <TextBlock x:Name="tbRule2" Text="Условия пароля 2: наличие строчных букв" 
+                               Foreground="#AAAAAA" FontSize="12" Margin="0,0,0,6"/>
+                    <TextBlock x:Name="tbRule3" Text="Условия пароля 3: наличие заглавных букв" 
+                               Foreground="#AAAAAA" FontSize="12" Margin="0,0,0,6"/>
+                    <TextBlock x:Name="tbRule4" Text="Условия пароля 4: совпадение паролей" 
+                               Foreground="#AAAAAA" FontSize="12" Margin="0,0,0,6"/>
+                </StackPanel>
+
+                <!-- Подсказка о базе данных -->
+                <Border BorderBrush="#3F3F46" BorderThickness="1" Background="#1F1F24" 
+                        CornerRadius="4" Padding="12" Margin="0,40,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Подключение к БД:" FontWeight="Bold" Foreground="#4EC9B0" FontSize="12" Margin="0,0,0,6"/>
+                        <TextBlock Text="• СУБД: PostgreSQL 18" Foreground="#CCCCCC" FontSize="11" Margin="0,0,0,2"/>
+                        <TextBlock Text="• База данных: user_auth_db" Foreground="#CCCCCC" FontSize="11" Margin="0,0,0,2"/>
+                        <TextBlock Text="• Таблицы: СекретныйВопрос, Пользователь" Foreground="#CCCCCC" FontSize="11" Margin="0,0,0,2"/>
+                        <TextBlock Text="• ORM: Entity Framework Core 8" Foreground="#CCCCCC" FontSize="11" Margin="0,0,0,2"/>
+                        <TextBlock Text="• Провайдер: Npgsql" Foreground="#CCCCCC" FontSize="11"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>

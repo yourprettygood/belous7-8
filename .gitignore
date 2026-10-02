@@ -1,0 +1,21 @@
+## Build and output folders
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Python venv and temporary generation scripts
+venv/
+__pycache__/
+*.pyc
+
+## OS generated files
+.DS_Store
+Thumbs.db
